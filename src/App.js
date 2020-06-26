@@ -9,19 +9,27 @@ import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '4591256' },
-      { id: 'id-2', name: 'Hermione Kline', number: '4438912' },
-      { id: 'id-3', name: 'Eden Clements', number: '6451779' },
-      { id: 'id-4', name: 'Annie Copeland', number: '2279126' },
-    ],
+    contacts: [],
     filter: '',
   };
 
-  inputChange = evt => {
-    const { name, value } = evt.currentTarget;
+  componentDidMount() {
+    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  inputChange = ({ currentTarget }) => {
+    const { name, value } = currentTarget;
     this.setState({ [name]: value });
   };
 
@@ -85,5 +93,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

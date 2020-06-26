@@ -6,8 +6,7 @@ class ContactForm extends Component {
     number: '',
   };
 
-  inputChange = evt => {
-    const { name, value } = evt.currentTarget;
+  inputChange = ({ currentTarget: { name, value } }) => {
     this.setState({ [name]: value });
   };
 
