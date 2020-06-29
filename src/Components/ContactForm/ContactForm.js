@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import toaster from 'toasted-notes';
+import 'toasted-notes/src/styles.css';
 
 class ContactForm extends Component {
   state = {
@@ -12,6 +14,13 @@ class ContactForm extends Component {
 
   createContact = evt => {
     evt.preventDefault();
+
+    if (this.state.number.length < 7 || this.state.number.length > 7) {
+      toaster.notify('Please fill the correct number: 12-34-567', {
+        duration: 5000,
+      });
+      return;
+    }
 
     this.props.onSubmit(this.state);
 
@@ -43,8 +52,7 @@ class ContactForm extends Component {
           Phone number *
           <br />
           <input
-            type="tel"
-            pattern="[0-9]{7}"
+            type="number"
             name="number"
             value={number}
             className="input"

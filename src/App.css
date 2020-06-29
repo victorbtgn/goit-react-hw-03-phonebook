@@ -19,6 +19,12 @@
   padding: 0 10px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
 .btn {
   padding: 0 10px;
   border: 1px solid #01afaf;

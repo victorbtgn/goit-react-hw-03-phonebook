@@ -7,6 +7,7 @@ import ContactList from './Components/Contacts/ContactList';
 import Section from './Common/Section';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
+import { saveToLS, getFromLS } from './utils/helper';
 import './App.css';
 
 export default class App extends Component {
@@ -16,15 +17,14 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
+    if (getFromLS('contacts')) {
+      this.setState({ contacts: getFromLS('contacts') });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      saveToLS('contacts', this.state.contacts);
     }
   }
 

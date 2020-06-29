@@ -7,9 +7,9 @@ const ContactItem = ({ id, name, number, onDelete }) => (
       <span>{name}:</span>
       <span>
         {number[0]}
-        {number[1]}
-        {number[2]}-{number[3]}
-        {number[4]}-{number[5]}
+        {number[1]}-{number[2]}
+        {number[3]}-{number[4]}
+        {number[5]}
         {number[6]}
       </span>
     </div>
@@ -27,3 +27,5 @@ ContactItem.propTypes = {
 };
 
 export default ContactItem;
+
+// .toLocaleString('en-IN')
