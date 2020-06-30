@@ -27,5 +27,3 @@ ContactItem.propTypes = {
 };
 
 export default ContactItem;
-
-// .toLocaleString('en-IN')
